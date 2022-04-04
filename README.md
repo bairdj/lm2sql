@@ -1,4 +1,4 @@
-Generate a SQL implementation of your fitted linear model.
+Generate a SQL implementation of your fitted linear model. This is currently targeted at TSQL, but may support other dialects in the future. This allows predictions to be made directly within the database without needing to query the data into an external R script. This package is redundant if you have [R Services](https://docs.microsoft.com/en-us/sql/machine-learning/r/sql-server-r-services?view=sql-server-2016) installed on SQL Server as you can call the R model directly.
 
 # Example
     model <- lm(mpg ~ cyl + wt, data=mtcars)
