@@ -35,3 +35,30 @@ Calling `toSql(model, "dbo.PredictMpg")` returns
 	-- Response calculation
 	RETURN @coefIntercept + (@coefCyl * @cyl) + (@coefWt * @wt);
 	END
+
+The function can then be used anywhere that you can use a UDF. Example
+    DECLARE @mtcars TABLE (
+    	cyl INT,
+    	wt DECIMAL(5,3)
+    );
+    
+    INSERT INTO @mtcars VALUES (6, 2.62), (6, 2.875), (4, 2.32)
+    
+    SELECT
+    cyl,
+    wt,
+    dbo.PredictMpg(cyl, wt) AS Prediction
+    FROM
+    @mtcars
+    
+This returns
+    (3 row(s) affected)
+    cyl         wt                                      Prediction
+    ----------- --------------------------------------- ---------------------------------------
+    6           2.620                                   22.279144
+    6           2.875                                   21.465446
+    4           2.320                                   26.252026
+    
+    (3 row(s) affected)
+    
+The results from this are identical to `predict(model, newdata = mtcars)`
