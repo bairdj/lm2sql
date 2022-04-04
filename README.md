@@ -37,6 +37,7 @@ Calling `toSql(model, "dbo.PredictMpg")` returns
 	END
 
 The function can then be used anywhere that you can use a UDF. Example
+
     DECLARE @mtcars TABLE (
     	cyl INT,
     	wt DECIMAL(5,3)
@@ -52,6 +53,7 @@ The function can then be used anywhere that you can use a UDF. Example
     @mtcars
     
 This returns
+
     (3 row(s) affected)
     cyl         wt                                      Prediction
     ----------- --------------------------------------- ---------------------------------------
